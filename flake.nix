@@ -2,7 +2,7 @@
 
   description = "The Lazy Virtual Machine (LVM)";
 
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/release-22.11"; };
+  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; };
   outputs = inputs@{ self, nixpkgs }:
     let
       homepage = "http://www.cs.uu.nl/wiki/bin/view/Helium/WebHome";
@@ -18,7 +18,7 @@
         let pkgs = nixpkgsFor system;
         in pkgs.stdenv.mkDerivation {
           name = "Standard-Dev-Environment-with-Utils";
-          buildInputs = (with pkgs; [ cabal-install ghc ]);
+          buildInputs = [ pkgs.haskell.compiler.ghc927 ];
         };
 
       haskell = rec {
